@@ -1,0 +1,22 @@
+{
+    "name": "mskocik/vinette",
+    "description": "Vite-connector for nette apps",
+    "type": "library",
+    "require": {
+        "nette/di": "~3.0",
+        "tracy/tracy": "~2.9",
+        "nette/http": "~3.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mskocik\\Vinette\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Martin Skocik",
+            "email": "mskocik@gmail.com"
+        }
+    ]
+}

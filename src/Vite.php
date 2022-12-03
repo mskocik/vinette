@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Mskocik\Vinnete\ViteAssets;
+namespace Mskocik\Vinette;
 
 use Nette;
 use Nette\Application\UI\Template;
@@ -85,7 +85,7 @@ class Vite
     public function viteClient(): string
     {
         return $this->enabled
-            ? Html::el('script')->type('module')->src($this->viteServer . '/' . '@vite/client')
+            ? (string) Html::el('script')->type('module')->src($this->viteServer . '/' . '@vite/client')
             : '';
     }
 

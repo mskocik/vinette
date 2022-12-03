@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Mskocik\Vinnete\Bridges\NetteDI;
+namespace Mskocik\Vinette\Bridges\NetteDI;
 
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
 use Nette\PhpGenerator\ClassType;
-use Mskocik\Vinnete\Bridges\NetteTracy\VitePanel;
-use Mskocik\Vinnete\Vite;
+use Mskocik\Vinette\Bridges\NetteTracy\VitePanel;
+use Mskocik\Vinette\Vite;
 
 
 class ViteExtension extends \Nette\DI\CompilerExtension
@@ -44,6 +44,7 @@ class ViteExtension extends \Nette\DI\CompilerExtension
     {
         $initialize = $this->initialization;
 		$initialize->addBody('if (!Tracy\Debugger::isEnabled()) { return; }');
-        $initialize->addBody('Tracy\Debugger::getBar()->addPanel(new ' . VitePanel::class . ');');
+        $ctor = VitePanel::class . '(\'' . $this->config->devServer . '\')';
+        $initialize->addBody("Tracy\Debugger::getBar()->addPanel(new $ctor);");
     }
 }

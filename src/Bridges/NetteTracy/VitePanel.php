@@ -1,14 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Mskocik\Vinnete\Bridges\NetteTracy;
+namespace Mskocik\Vinette\Bridges\NetteTracy;
 
 use Tracy\IBarPanel;
 
 class VitePanel implements IBarPanel
 {
+    public function __construct(private string $devServerUrl) {}
+
     public function getTab()
     {
-        return file_get_contents(__DIR__ . '/Vite.html');
+        $url = $this->devServerUrl;
+        ob_start();
+        require __DIR__ . '/Vite.phtml';
+        return ob_get_clean();
     }
 
     public function getPanel()

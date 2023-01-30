@@ -10,6 +10,7 @@ class VitePanel implements IBarPanel
 
     public function getTab()
     {
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) return '';
         $url = $this->devServerUrl;
         ob_start();
         require __DIR__ . '/Vite.phtml';

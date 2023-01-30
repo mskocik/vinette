@@ -12,7 +12,7 @@ use Nette\Bridges\ApplicationLatte\DefaultTemplate;
 
 class Vite
 {
-    private bool $enabled = false;
+    public bool $enabled = false;
     private array $manifest = [];
     private string $basePath;
 
@@ -24,7 +24,7 @@ class Vite
         bool $productionMode,
         Nette\Http\Request $httpRequest
     ){
-        $this->enabled = (!$productionMode && $httpRequest->getCookie('netteVite') === 'true');
+        $this->enabled = (!$productionMode && $httpRequest->getCookie('netteVite') !== 'false');
 
         $absoluteManifestPath = $wwwDir . '/' . $manifestFile;
         if (!$this->enabled) {
@@ -77,16 +77,13 @@ class Vite
 
         if (!$this->enabled) {
             $assets = $this->manifest[$entrypoint]['css'] ?? [];
+            foreach ($this->manifest[$entrypoint]['imports'] ?? [] as $import) {
+                $importedAssets = $this->getCssAssets($import);
+                !empty($importedAssets) && array_push($assets, ...array_map(fn($css) => $this->basePath . $css, $importedAssets));
+            }
         }
 
         return $assets;
-    }
-
-    public function viteClient(): string
-    {
-        return $this->enabled
-            ? (string) Html::el('script')->type('module')->src($this->viteServer . '/' . '@vite/client')
-            : '';
     }
 
     /**
@@ -97,8 +94,6 @@ class Vite
         $scripts = [$this->getAsset($entrypoint)];
         $styles = $this->getCssAssets($entrypoint);
 
-        echo $this->viteClient();
-
         foreach ($styles as $path) {
             echo Html::el('link')->rel('stylesheet')->href($path);
         }
@@ -106,10 +101,5 @@ class Vite
         foreach ($scripts as $path) {
             echo Html::el('script')->type('module')->src($path);
         }
-    }
-
-    public function __toString(): string
-    {
-        return $this->viteClient();
     }
 }

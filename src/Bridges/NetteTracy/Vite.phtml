@@ -1,70 +1,82 @@
-<span title="Toggle Vite. " data-action="netteVite">
-    <svg width="100%" height="100%" viewBox="0 0 410 404" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-        <path d="M399.641,59.525L215.643,388.545C211.844,395.338 202.084,395.378 198.228,388.618L10.582,59.556C6.381,52.19 12.68,43.267 21.028,44.759L205.223,77.682C206.398,77.892 207.601,77.89 208.776,77.676L389.119,44.806C397.439,43.289 403.768,52.143 399.641,59.525Z" style="fill:url(#_Linear1);fill-rule:nonzero;"/>
-        <path d="M292.965,1.574L156.801,28.255C154.563,28.694 152.906,30.59 152.771,32.866L144.395,174.33C144.198,177.662 147.258,180.248 150.51,179.498L188.42,170.749C191.967,169.931 195.172,173.055 194.443,176.622L183.18,231.775C182.422,235.487 185.907,238.661 189.532,237.56L212.947,230.446C216.577,229.344 220.065,232.527 219.297,236.242L201.398,322.875C200.278,328.294 207.486,331.249 210.492,326.603L212.5,323.5L323.454,102.072C325.312,98.365 322.108,94.137 318.036,94.923L279.014,102.454C275.347,103.161 272.227,99.746 273.262,96.158L298.731,7.867C299.767,4.273 296.636,0.855 292.965,1.574Z" style="fill:url(#_Linear2);fill-rule:nonzero;"/>
-        <defs>
-            <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(229,311,-311,229,6.00017,32.9999)"><stop offset="0" style="stop-color:rgb(65,209,255);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(189,52,254);stop-opacity:1"/></linearGradient>
-            <linearGradient id="_Linear2" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(41.425,284.171,-284.171,41.425,194.651,8.81818)"><stop offset="0" style="stop-color:rgb(255,234,131);stop-opacity:1"/><stop offset="0.08" style="stop-color:rgb(255,221,53);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(255,168,0);stop-opacity:1"/></linearGradient>
-        </defs>
-    </svg>
-</span>
+<vite-debug-ui id="vite-debug-ui" title="Production mode. Click to toggle to DEV mode" data-action="netteVite">
+  <svg width="100%" height="100%" viewBox="0 0 410 404" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <path d="M399.641,59.525L215.643,388.545C211.844,395.338 202.084,395.378 198.228,388.618L10.582,59.556C6.381,52.19 12.68,43.267 21.028,44.759L205.223,77.682C206.398,77.892 207.601,77.89 208.776,77.676L389.119,44.806C397.439,43.289 403.768,52.143 399.641,59.525Z" style="fill:url(#_Linear1);fill-rule:nonzero;"/>
+    <path d="M292.965,1.574L156.801,28.255C154.563,28.694 152.906,30.59 152.771,32.866L144.395,174.33C144.198,177.662 147.258,180.248 150.51,179.498L188.42,170.749C191.967,169.931 195.172,173.055 194.443,176.622L183.18,231.775C182.422,235.487 185.907,238.661 189.532,237.56L212.947,230.446C216.577,229.344 220.065,232.527 219.297,236.242L201.398,322.875C200.278,328.294 207.486,331.249 210.492,326.603L212.5,323.5L323.454,102.072C325.312,98.365 322.108,94.137 318.036,94.923L279.014,102.454C275.347,103.161 272.227,99.746 273.262,96.158L298.731,7.867C299.767,4.273 296.636,0.855 292.965,1.574Z" style="fill:url(#_Linear2);fill-rule:nonzero;"/>
+    <defs>
+      <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(229,311,-311,229,6.00017,32.9999)"><stop offset="0" style="stop-color:rgb(65,209,255);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(189,52,254);stop-opacity:1"/></linearGradient>
+      <linearGradient id="_Linear2" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(41.425,284.171,-284.171,41.425,194.651,8.81818)"><stop offset="0" style="stop-color:rgb(255,234,131);stop-opacity:1"/><stop offset="0.08" style="stop-color:rgb(255,221,53);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(255,168,0);stop-opacity:1"/></linearGradient>
+    </defs>
+  </svg>
+</vite-debug-ui>
 <style>
-  #tracy-debug [data-action="netteVite"] {
-    cursor: pointer;
-    padding: 0 .4em;
-    margin: 0 -.4em;
+  #vite-debug-ui {
     display: block;
+    cursor: pointer;
+    padding: 0 0.4em;
+    /* margin: 0; */
     position: relative;
+    opacity: 0.4 !important;
   }
-  [data-action="netteVite"].connected:after {
-    content: '';
-    border-radius: 50%;
+  #vite-debug-ui.enabled {
+    opacity: 1 !important;
+  }
+  #vite-debug-ui:after {
     position: absolute;
+    display: block;
+    border-radius: 50%;
     bottom: 2px;
     right: 1px;
-    background-color: #5dd75d;
     width: 6px;
     height: 6px;
   }
+  #vite-debug-ui.connected:after {
+    content: '';
+    background-color: #5dd75d;
+  }
+  #vite-debug-ui.offline:after {
+    content: '';
+    background-color: red;
+  }
 
-  #tracy-debug [data-action="netteVite"]:hover {
+  vite-debug-ui:hover {
     background: #c3c1b8;
   }
 </style>
 <script>
-    (() => {
-        const devServerUrl = '<?= $url; ?>'
-        function getCookie(n, a = `; ${document.cookie}`.match(`;\\s*${n}=([^;]+)`)) {
-            return a ? JSON.parse(a[1]) : false;
+  (() => {
+    const devServerUrl = '<?= $url; ?>'
+    function getCookie(n, a = `; ${document.cookie}`.match(`;\\s*${n}=([^;]+)`)) {
+      return a ? a[1] === 'enabled' : false;
+    }
+
+    const element = document.querySelector('#tracy-debug vite-debug-ui')
+
+    const devMode = getCookie('netteVite');
+    devMode && element.classList.add('enabled');
+    // check if dev server running
+    const abort = new AbortController();
+    let timer = null;
+    // disable vite client in iframe
+    devMode && window.parent === window && fetch(devServerUrl + '/@vite/client', { signal: abort.signal})
+      .then(() => {
+        clearTimeout(timer);
+        element.classList.add('connected');
+      })
+      .catch(err => {
+        if (devMode) {
+          element.classList.add('offline');
         }
+        element.title = devMode
+          ? 'Dev mode: Vite server offline'
+          : 'Production mode: Serving assets from manifest.json';
+      });
+    timer = setTimeout(() => abort.abort(), 3000);
 
-        const element = document.querySelector('#tracy-debug [data-action="netteVite"]')
-
-        function toggleIcon(hasCookie) {
-            element.classList[hasCookie ? 'add' : 'remove']('connected');
-        }
-
-        toggleIcon(getCookie('netteVite'));
-        // check if dev server running
-        const abort = new AbortController();
-        let timer = null;
-        // disable vite client in iframe
-        window.parent === window && fetch(devServerUrl + '/@vite/client', { signal: abort.signal})
-            .then(() => {
-                clearTimeout(timer);
-            })
-            .catch(err => {
-                console.log(err);
-                element.style.backgroundColor = 'red';
-                element.title = 'Server not running';
-            });
-        timer = setTimeout(() => abort.abort(), 3000);
-
-        element.addEventListener('click', () => {
-            document.cookie = getCookie('netteVite') ? 'netteVite=false; path=/;' : 'netteVite=true; path=/;'
-            setTimeout(() => {
-                document.location.reload()
-            }, 100);
-        })
-    })()
+    element.addEventListener('click', () => {
+      document.cookie = getCookie('netteVite') ? 'netteVite=false; path=/; expire=0' : 'netteVite=enabled; path=/;'
+      setTimeout(() => {
+        document.location.reload()
+      }, 100);
+    })
+  })()
 </script>

@@ -70,19 +70,21 @@ class Vite
 	/**
 	 * @throws \Nette\Utils\JsonException
 	 */
-	public function getCssAssets(string $entrypoint): array
+	public function getCssAssets(string $entrypoint, /** @internal */ bool $isDeepCall = false): array
 	{
 		$assets = [];
 
 		if (!$this->enabled) {
 			$assets = $this->manifest[$entrypoint]['css'] ?? [];
 			foreach ($this->manifest[$entrypoint]['imports'] ?? [] as $import) {
-				$importedAssets = $this->getCssAssets($import);
+				$importedAssets = $this->getCssAssets($import, true);
 				!empty($importedAssets) && array_push($assets, ...$importedAssets);
 			}
 		}
 
-		return array_map(fn($css) => $this->basePath . $css, $assets);
+		return $isDeepCall
+            ? $assets
+            : array_map(fn($css) => $this->basePath . $css, $assets);
 	}
 
 	/**

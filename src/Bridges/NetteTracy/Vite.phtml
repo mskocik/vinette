@@ -73,7 +73,7 @@
     timer = setTimeout(() => abort.abort(), 3000);
 
     element.addEventListener('click', () => {
-      document.cookie = getCookie('netteVite') ? 'netteVite=false; path=/; expire=0' : 'netteVite=enabled; path=/;'
+      document.cookie = getCookie('netteVite') ? 'netteVite=false; path=/; expire=0;' : 'netteVite=enabled; path=/;'
       setTimeout(() => {
         document.location.reload()
       }, 100);

@@ -49,7 +49,7 @@
       return a ? a[1] === 'enabled' : false;
     }
 
-    const element = document.querySelector('#tracy-debug vite-debug-ui')
+    const element = document.querySelector('#tracy-debug vite-debug-ui');
 
     const devMode = getCookie('netteVite');
     devMode && element.classList.add('enabled');
@@ -73,7 +73,9 @@
     timer = setTimeout(() => abort.abort(), 3000);
 
     element.addEventListener('click', () => {
-      document.cookie = getCookie('netteVite') ? 'netteVite=false; path=/; expire=0;' : 'netteVite=enabled; path=/;'
+      if (element.dataset.initialized) return;
+      document.cookie = getCookie('netteVite') ? 'netteVite=false;path=/;expires=0;' : 'netteVite=enabled;path=/;expires=' + (new Date(Date.now() + (1000*3600*24*365))).toUTCString() + ';'
+      element.dataset.initialized = '1';
       setTimeout(() => {
         document.location.reload()
       }, 100);

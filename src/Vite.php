@@ -19,26 +19,25 @@ class Vite
 	public function __construct(
 		private string $viteServer,
 		string $manifestFile,
-		?string $assetPath,
 		string $wwwDir,
 		bool $productionMode,
+		bool $consoleMode,
 		Nette\Http\Request $httpRequest
 	){
-		$this->enabled = (!$productionMode && $httpRequest->getCookie('netteVite') === 'enabled');
+		$this->enabled = $consoleMode
+			? false
+			: (!$productionMode && $httpRequest->getCookie('netteVite') === 'enabled');
 
 		$absoluteManifestPath = $wwwDir . '/' . $manifestFile;
 		if (!$this->enabled) {
 			if (file_exists($absoluteManifestPath)) {
 				$this->manifest = Json::decode(FileSystem::read($absoluteManifestPath), Json::FORCE_ARRAY);
 			} else {
-				trigger_error('Missing expected manifest file: ' . $manifestFile . '. Maybe you just need to build your frontend assets or toggle vite dev mode from tracy bar.', E_USER_WARNING);
+				trigger_error('Missing expected manifest file: ' . $wwwDir . '/' . $manifestFile . '. Maybe you just need to build your frontend assets or toggle vite dev mode from tracy bar.', E_USER_WARNING);
 			}
 		}
 
-		if (!$assetPath) {
-			$assetPath = str_replace('manifest.json', '', $manifestFile);
-		}
-		$this->basePath = $httpRequest->getUrl()->getBasePath() . ltrim($assetPath);
+		$this->basePath = $httpRequest->getUrl()->getBasePath();
 	}
 
 	/**

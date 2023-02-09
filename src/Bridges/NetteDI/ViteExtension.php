@@ -13,26 +13,31 @@ class ViteExtension extends \Nette\DI\CompilerExtension
 {
 	private bool $debugMode = true;
 
+    private bool $consoleMode = false;
+
 	public function getConfigSchema(): Schema
 	{
 		return Expect::structure([
 			'manifest' => Expect::string()->required(),
-			'assetPath' => Expect::string(null)->nullable(),
 			'devServer' => Expect::string('http://localhost:5173'),
+            'wwwDir' => Expect::string('www'),  // relative from %vendorDir%
 		]);
 	}
 
 	public function beforeCompile()
 	{
-		/** @var \Nette\DI\CompilerExtension */
+
+        /** @var \Nette\DI\CompilerExtension */
 		$parameters = $this->compiler->getExtensions()['parameters']->getConfig();
-		$wwwDir = $parameters['wwwDir'];
 		$this->debugMode = $parameters['debugMode'];
-		
+        $this->consoleMode = $parameters['consoleMode'];
+
+        $wwwDir = dirname($parameters['vendorDir']) . '/' . ltrim($this->config->wwwDir, '/\\');
+
 		$builder = $this->getContainerBuilder();
 		$builder->addDefinition($this->prefix('assets'))
 			->setFactory(Vite::class)
-			->setArguments([$this->config->devServer, ltrim($this->config->manifest, '/'), $this->config->assetPath, $wwwDir, !$this->debugMode]);
+			->setArguments([$this->config->devServer, ltrim($this->config->manifest, '/'), $wwwDir, !$this->debugMode, $this->consoleMode]);
 
 		$templateFactory = $builder->getDefinition('latte.templateFactory');
 		$templateFactory
@@ -50,10 +55,13 @@ class ViteExtension extends \Nette\DI\CompilerExtension
 		};
 	}
 
+    /**
+     * Attach panel only in debug mode and not console mode
+     */
 	public function afterCompile(ClassType $class)
 	{
-		if (!$this->debugMode) return;
-		
+		if (!$this->debugMode || $this->consoleMode) return;
+
 		$initialize = $this->initialization;
 		$initialize->addBody('if (!Tracy\Debugger::isEnabled()) { return; }');
 		$ctor = VitePanel::class . '(\'' . $this->config->devServer . '\')';

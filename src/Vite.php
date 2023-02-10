@@ -37,7 +37,8 @@ class Vite
 			}
 		}
 
-		$this->basePath = $httpRequest->getUrl()->getBasePath();
+		$assetPath = str_replace('manifest.json', '', $manifestFile);
+		$this->basePath = $httpRequest->getUrl()->getBasePath() . ltrim($assetPath, '/');
 	}
 
 	/**

@@ -51,9 +51,13 @@ automatically injected into your templates.
 
 ## Dev mode toggle
 
-Dev mode is enabled by clicking on the Vite icon in the tracy bar. By default it's disabled, using production build assets.
+Dev mode is enabled/toggled by clicking on the Vite icon in the tracy bar. By default it's disabled, using production build assets.
 
-In dev mode it signal if dev server is running or not (green or red dot).
+| Icon | Status |
+|-----|---------|
+| <img src="https://raw.githubusercontent.com/mskocik/vinette/main/docs/icon-prod.png" alt="Production mode"> | Production mode. Assets are being served according to definition in `manifest.json. Icon is semitransparent |
+| <img src="https://raw.githubusercontent.com/mskocik/vinette/main/docs/icon-running.png" alt="Enabled, running"> | Dev mode enabled, serving assets directly from vite devServer |
+| <img src="https://raw.githubusercontent.com/mskocik/vinette/main/docs/icon-not-running.png" alt="Enabled, not running"> | Dev mode enabled, but vite devServer is not running |
 
 ---
 

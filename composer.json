@@ -19,5 +19,8 @@
             "name": "Martin Skocik",
             "email": "mskocik@gmail.com"
         }
-    ]
+    ],
+    "archive": {
+        "exclude": ["docs/*"]
+    }
 }
